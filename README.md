@@ -7,4 +7,18 @@ An utility block to set the hostname of devices running balenaOS.
 
 ## Usage
 
-TODO
+To use this image, create a container in your `docker-compose.yml` file and set the `SET_HOSTNAME` environment variable as shown below:
+
+```yaml
+version: '2'
+
+services:
+
+  hostname:
+    build: .
+    restart: no                               # Required to avoid container restarting indefinitely
+    labels:
+      io.balena.features.supervisor-api: 1    # Required to interact with the supervisor
+    environment:
+      SET_HOSTNAME: balena-test-hostname
+```
