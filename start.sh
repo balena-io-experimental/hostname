@@ -15,6 +15,7 @@ CURRENT_HOSTNAME=$(curl -sL "$BALENA_SUPERVISOR_ADDRESS/v1/device/host-config?ap
 echo "Current hostname: $CURRENT_HOSTNAME"
 
 # Skip if no SET_HOSTNAME
+# We can't use HOSTNAME as the user input because alpine already prepopulates it with the container's hostname which is different than the host
 if [[ -z "$SET_HOSTNAME" ]]; then
   echo "Skipping hostname set: SET_HOSTNAME was not provided."
   exit 0
