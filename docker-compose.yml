@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+
+  hostname:
+    build: .
+    restart: no
+    labels:
+      io.balena.features.supervisor-api: 1
+    environment:
+      SET_HOSTNAME: balena-test-hostname
