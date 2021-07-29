@@ -1,4 +1,6 @@
-FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine:3.14
+ARG BALENA_ARCH=%%BALENA_ARCH%%
+
+FROM balenalib/$BALENA_ARCH-alpine:3.14
 WORKDIR /usr/src
 
 RUN install_packages curl jq
