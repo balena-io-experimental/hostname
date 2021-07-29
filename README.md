@@ -15,7 +15,7 @@ version: '2'
 services:
 
   hostname:
-    build: .
+    image: balenablocks/hostname
     restart: no                               # Required to avoid container restarting indefinitely
     labels:
       io.balena.features.supervisor-api: 1    # Required to interact with the supervisor
