@@ -1,4 +1,4 @@
-name: dashboard
+name: hostname
 description: An utility block to set the hostname of devices running balenaOS.
 type: sw.application
 assets:
