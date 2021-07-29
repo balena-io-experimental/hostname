@@ -1,0 +1,27 @@
+name: dashboard
+description: An utility block to set the hostname of devices running balenaOS.
+type: sw.application
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/balenablocks/hostname'
+  logo:
+    type: blob.asset
+    data:
+      url: 'https://raw.githubusercontent.com/balenablocks/hostname/master/logo.png'
+data:
+  defaultDeviceType: raspberry-pi
+  supportedDeviceTypes:
+    - raspberry-pi
+    - raspberry-pi2
+    - raspberrypi3
+    - raspberrypi3-64
+    - raspberrypi4-64
+    - raspberrypi400-64
+    - nanopi-neo-air
+    - fincm3
+    - intel-nuc
+    - jetson-nano
+    - beaglebone-black
+version: 0.0.2
