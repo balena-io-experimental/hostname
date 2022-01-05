@@ -14,6 +14,11 @@ fi
 CURRENT_HOSTNAME=$(curl -sL "$BALENA_SUPERVISOR_ADDRESS/v1/device/host-config?apikey=$BALENA_SUPERVISOR_API_KEY" | jq -r '.network.hostname')
 echo "Current hostname: $CURRENT_HOSTNAME"
 
+# Use device short uuid if hostname is set to "UUID" or "uuid"
+if [[ "${SET_HOSTNAME,,}" = "uuid" ]]; then
+  SET_HOSTNAME="${BALENA_DEVICE_UUID:0:7}"
+fi
+
 # Skip if no SET_HOSTNAME
 # We can't use HOSTNAME as the user input because alpine already prepopulates it with the container's hostname which is different than the host
 if [[ -z "$SET_HOSTNAME" ]]; then
