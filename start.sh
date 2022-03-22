@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "--- Hostname ---"
 
@@ -15,7 +15,7 @@ CURRENT_HOSTNAME=$(curl -sL "$BALENA_SUPERVISOR_ADDRESS/v1/device/host-config?ap
 echo "Current hostname: $CURRENT_HOSTNAME"
 
 # Use device short uuid if hostname is set to "UUID" or "uuid"
-if [[ "${SET_HOSTNAME,,}" = "uuid" ]]; then
+if [[ "${SET_HOSTNAME}" == "uuid" || "${SET_HOSTNAME}" == "UUID" ]]; then
   SET_HOSTNAME="${BALENA_DEVICE_UUID:0:7}"
 fi
 
