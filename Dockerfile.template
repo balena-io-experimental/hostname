@@ -1,10 +1,21 @@
 ARG BALENA_ARCH=%%BALENA_ARCH%%
 
-FROM balenalib/$BALENA_ARCH-alpine:3.14
+FROM balenalib/$BALENA_ARCH-alpine-python:3.14 as build
 WORKDIR /usr/src
 
-RUN install_packages curl jq
+RUN install_packages curl jq git rsync binutils
 COPY start.sh start.sh
 
-#dev-cmd-live=balena-idle
-CMD [ "/bin/bash", "/usr/src/start.sh" ]
+RUN pip install git+https://github.com/larsks/dockerize
+
+WORKDIR /rootfs
+RUN dockerize -n --verbose -o /rootfs/ /usr/bin/jq /usr/bin/curl
+
+FROM busybox:1.35.0
+WORKDIR /usr/src
+
+COPY --from=build /rootfs/ /
+COPY start.sh start.sh
+
+#dev-cmd-live=sleep infinity
+CMD [ "/bin/sh", "/usr/src/start.sh" ]
